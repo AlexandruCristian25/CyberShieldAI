@@ -1,0 +1,65 @@
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .animate-fadeOut {
+    animation: fadeOut 1s ease-out forwards;
+  }
+  
+  .toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+  }
+  
+  .toast-success {
+    background-color: #16a34a; /* Green */
+  }
+  
+  .toast-error {
+    background-color: #dc2626; /* Red */
+  }
+  
+  button:disabled {
+    background-color: #94a3b8 !important;
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+  }
+  
+  input.form-input:focus {
+    outline: none;
+    border: 2px solid #7c3aed;
+    background-color: #f8fafc;
+  }
+  
+  button, input.form-input {
+    transition: all 0.3s ease-in-out;
+  }
+  

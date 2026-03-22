@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CyberShield Admin Permissions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/css/admin_permissions.css" />
+</head>
+<body class="bg-slate-900 text-slate-100 p-6 font-sans">
+  <div class="max-w-4xl mx-auto space-y-10 animate-fadeIn">
+    <header>
+      <h1 class="text-3xl font-bold text-cyan-400">CyberShield AI - Admin Panel</h1>
+    </header>
+
+    {% if message %}
+      <div class="p-4 rounded-lg {{ 'bg-green-700' if success else 'bg-red-700' }}">
+        <p class="text-white font-medium">{{ message }}</p>
+      </div>
+    {% endif %}
+
+    <section>
+      <h2 class="text-xl font-semibold text-cyan-300 mb-4">Grant Permission</h2>
+      <form method="post" action="/admin/grant" class="space-y-4 bg-slate-800 p-6 rounded-lg shadow">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <div>
+          <label for="role" class="block font-medium">Role:</label>
+          <input type="text" name="role" required class="form-input w-full bg-slate-200 text-black p-2 rounded" />
+        </div>
+        <div>
+          <label for="action" class="block font-medium">Action:</label>
+          <input type="text" name="action" required class="form-input w-full bg-slate-200 text-black p-2 rounded" />
+        </div>
+        <button type="submit" class="btn bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-bold">Grant</button>
+      </form>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold text-cyan-300 mb-4">Revoke Permission</h2>
+      <form method="post" action="/admin/revoke" class="space-y-4 bg-slate-800 p-6 rounded-lg shadow">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <div>
+          <label for="role" class="block font-medium">Role:</label>
+          <input type="text" name="role" required class="form-input w-full bg-slate-200 text-black p-2 rounded" />
+        </div>
+        <div>
+          <label for="action" class="block font-medium">Action:</label>
+          <input type="text" name="action" required class="form-input w-full bg-slate-200 text-black p-2 rounded" />
+        </div>
+        <button type="submit" class="btn bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-white font-bold">Revoke</button>
+      </form>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold text-cyan-300 mb-4">Audit: Current Permissions</h2>
+      <div class="overflow-auto rounded-lg shadow">
+        <table class="min-w-full bg-slate-800 text-left">
+          <thead class="bg-slate-700 text-cyan-200">
+            <tr>
+              <th class="px-4 py-3">Role</th>
+              <th class="px-4 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for perm in permissions %}
+              <tr class="hover:bg-slate-700 transition">
+                <td class="px-4 py-2">{{ perm.role|e }}</td>
+                <td class="px-4 py-2">{{ perm.action|e }}</td>
+              </tr>
+            {% else %}
+              <tr>
+                <td colspan="2" class="px-4 py-3 text-slate-400 italic">No permissions found.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/js/admin_permissions.js"></script>
+</body>
+</html>

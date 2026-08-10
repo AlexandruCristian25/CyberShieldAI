@@ -1,4 +1,4 @@
-import tailwindcss from 'tailwindcss';
+import tailwindcss from '@tailwindcss/postcss';
 import autoprefixer from 'autoprefixer';
 import nesting from 'postcss-nesting';
 import cssnano from 'cssnano';
@@ -8,8 +8,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 export default {
   plugins: [
-    tailwindcss,
-    autoprefixer,
+    tailwindcss(),
+    autoprefixer(),
     nesting(),
     postcssPresetEnv({
       stage: 1,
@@ -18,6 +18,8 @@ export default {
         'custom-properties': true,
       },
     }),
-    ...(isProduction ? [cssnano({ preset: 'default' })] : []),
+    ...(isProduction
+      ? [cssnano({ preset: 'default' })]
+      : []),
   ],
 };

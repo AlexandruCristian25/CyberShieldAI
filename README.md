@@ -520,5 +520,3 @@ If you find this project useful:
 <img width="1916" height="912" alt="image" src="https://github.com/user-attachments/assets/11298a27-725e-4736-adc3-10938e8814ae" />
 
 <img width="1906" height="912" alt="image" src="https://github.com/user-attachments/assets/f2cb8b00-7cd1-4d12-8df1-fa828be89ebc" />
-
-# CyberShield AI
